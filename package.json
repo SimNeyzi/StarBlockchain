@@ -1,20 +1,28 @@
 {
-  "name": "project_1",
+  "name": "project_1_v2_boilerplate",
   "version": "1.0.0",
-  "description": "This project creates a Blockchain application to store data into the blocks",
-  "main": "index.js",
+  "description": "You are starting your journey as a Blockchain Developer, this project allows you to demonstrate that you are familiarized with the fundamentals concepts of a Blockchain platform. Concepts like:     - Block     - Blockchain     - Wallet     - Blockchain Identity     - Proof of Existance",
+  "main": "BlockchainController.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Udacity - jose.morales@udacity.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimNeyzi/StarBlockchain.git"
+  },
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SimNeyzi/StarBlockchain/issues"
+  },
+  "homepage": "https://github.com/SimNeyzi/StarBlockchain#readme",
   "dependencies": {
-    "bitcoinjs-lib": "^4.0.3",
-    "bitcoinjs-message": "^2.0.0",
-    "body-parser": "^1.18.3",
-    "crypto-js": "^3.1.9-1",
-    "express": "^4.16.4",
-    "hex2ascii": "0.0.3",
-    "morgan": "^1.9.1"
+    "bitcoinjs-lib": "^6.0.1",
+    "bitcoinjs-message": "^2.2.0",
+    "body-parser": "^1.19.1",
+    "crypto-js": "^4.1.1",
+    "express": "^4.17.2",
+    "hex2ascii": "^0.0.3",
+    "morgan": "^1.10.0"
   }
 }
