@@ -1,7 +1,7 @@
 /**
  *          BlockchainController
- * 
- * This class expose the endpoints that the client applications will use to interact with the 
+ *
+ * This class expose the endpoints that the client applications will use to interact with the
  * Blockchain dataset
  */
 class BlockchainController {
@@ -10,6 +10,9 @@ class BlockchainController {
     constructor(app, blockchainObj) {
         this.app = app;
         this.blockchain = blockchainObj;
+        this.url = "http://localhost:8000/block";
+        // console.log('app: ', this.app);
+        console.log('blockchain: ', this.blockchain)
         // All the endpoints methods needs to be called in the constructor to initialize the route.
         this.getBlockByHeight();
         this.requestOwnership();
@@ -20,10 +23,14 @@ class BlockchainController {
 
     // Enpoint to Get a Block by Height (GET Endpoint)
     getBlockByHeight() {
+        // console.log('get: ', this.url+`/height/${height}`)
         this.app.get("/block/height/:height", async (req, res) => {
             if(req.params.height) {
+                console.log('req: ', req.params);
                 const height = parseInt(req.params.height);
+                console.log('this.blockchain: ', this.blockchain);
                 let block = await this.blockchain.getBlockByHeight(height);
+                console.log('block: ', block);
                 if(block){
                     return res.status(200).json(block);
                 } else {
@@ -32,7 +39,7 @@ class BlockchainController {
             } else {
                 return res.status(404).send("Block Not Found! Review the Parameters!");
             }
-            
+
         });
     }
 
@@ -42,6 +49,7 @@ class BlockchainController {
             if(req.body.address) {
                 const address = req.body.address;
                 const message = await this.blockchain.requestMessageOwnershipVerification(address);
+                // console.log('message: ', message);
                 if(message){
                     return res.status(200).json(message);
                 } else {
@@ -56,6 +64,8 @@ class BlockchainController {
     // Endpoint that allow Submit a Star, yu need first to `requestOwnership` to have the message (POST endpoint)
     submitStar() {
         this.app.post("/submitstar", async (req, res) => {
+            let message = await requestOwnership()
+            console.log('messagemis: ', message);
             if(req.body.address && req.body.message && req.body.signature && req.body.star) {
                 const address = req.body.address;
                 const message = req.body.message;
@@ -83,6 +93,7 @@ class BlockchainController {
             if(req.params.hash) {
                 const hash = req.params.hash;
                 let block = await this.blockchain.getBlockByHash(hash);
+                console.log('block from get block hash: ', block);
                 if(block){
                     return res.status(200).json(block);
                 } else {
@@ -91,7 +102,7 @@ class BlockchainController {
             } else {
                 return res.status(404).send("Block Not Found! Review the Parameters!");
             }
-            
+
         });
     }
 
@@ -113,7 +124,7 @@ class BlockchainController {
             } else {
                 return res.status(500).send("Block Not Found! Review the Parameters!");
             }
-            
+
         });
     }
 
