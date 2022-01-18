@@ -96,8 +96,6 @@ class Blockchain {
      * @param {*} address
      */
     requestMessageOwnershipVerification(address) {
-
-        /// REVIEW
         return new Promise((resolve) => {
             resolve( `${address}:${new Date().getTime().toString().slice(0,-3)}:starRegistry`
             )

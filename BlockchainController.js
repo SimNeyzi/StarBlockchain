@@ -10,7 +10,7 @@ class BlockchainController {
     constructor(app, blockchainObj) {
         this.app = app;
         this.blockchain = blockchainObj;
-        this.url = "http://localhost:8000/block";
+        // this.url = "http://localhost:8000/block";
         // console.log('app: ', this.app);
         console.log('blockchain: ', this.blockchain)
         // All the endpoints methods needs to be called in the constructor to initialize the route.
@@ -49,7 +49,6 @@ class BlockchainController {
             if(req.body.address) {
                 const address = req.body.address;
                 const message = await this.blockchain.requestMessageOwnershipVerification(address);
-                // console.log('message: ', message);
                 if(message){
                     return res.status(200).json(message);
                 } else {
