@@ -16,7 +16,6 @@ class Block {
 
     // Constructor - argument data will be the object containing the transaction data
 	constructor(data){
-        console.log('the block is being constructed')
 		this.hash = null;                                           // Hash of the block
 		this.height = 0;                                            // Block Height (consecutive number of each block)
 		this.body = Buffer.from(JSON.stringify(data)).toString('hex');   // Will contain the transactions stored in the block, by default it will encode the data
@@ -41,7 +40,6 @@ class Block {
         return new Promise((resolve, reject) => {
             // Save in auxiliary variable the current block hash
             const currentHash = {...self, hash: null};
-            console.log('in validate')
             // Recalculate the hash of the Block
             const recalculatedHash = SHA256(JSON.stringify(currentHash)).toString();
             // Comparing if the hashes changed
@@ -68,7 +66,7 @@ class Block {
         let self = this;
         return new Promise ((resolve, reject) => {
             // Getting the encoded data saved in the Block
-            const dataDecode = hex2ascii(self);
+            const dataDecode = hex2ascii(self.body);
             const parsed = JSON.parse(dataDecode)
             if (parsed !== 'Genesis Block') {
                 resolve(dataDecode)
